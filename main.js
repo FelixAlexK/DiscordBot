@@ -1,5 +1,3 @@
-
-
 const { token } = require('./config.json');
 const { Client, Events, GatewayIntentBits } = require('discord.js');
 
@@ -13,13 +11,12 @@ client.once(Events.ClientReady, c => {
 
 client.on(Events.MessageCreate, async (message) => {
 	const date = new Date();
-	
-		if(date.getDate == message.createdAt.getDate){
-			console.log((await message.author.send(message.author.avatarURL())));
-			
-		}
-		
-	
+
+	if (date.getDate == message.createdAt.getDate) {
+		console.log((await message.author.send(message.author.avatarURL())));
+
+	}
+
 
 });
 

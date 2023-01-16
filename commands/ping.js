@@ -12,6 +12,5 @@ module.exports = {
 		await wait(4000);
 		await interaction.editReply('defer Pong!');
 
-
 	},
 };

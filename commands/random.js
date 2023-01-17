@@ -15,17 +15,15 @@ module.exports = {
 
 	async execute(interaction) {
 		try {
-			await interaction.deferReply();
 
 			const input = interaction.options.getString('add', true).split(',');
 			const isEphemeral = interaction.options.getBoolean('ephemeral') ?? false;
 
-			const randomItem = _.sample(input);
-			wait(1000);
-			await interaction.editReply({ content: randomItem, ephemeral: isEphemeral });
+			await interaction.reply({ content : _.sample(input), ephemeral: isEphemeral });
+
 		}
 		catch (error) {
-			console.log(error);
+			console.log('The following error occurred: %s', error);
 		}
 
 

@@ -6,7 +6,7 @@ const { Client, GatewayIntentBits, Collection } = require('discord.js');
 dotenv.config();
 
 // Create a new client instance
-const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMembers] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildPresences, GatewayIntentBits.GuildMembers, GatewayIntentBits.GuildMembers] });
 client.commands = new Collection();
 
 const eventsPath = path.join(__dirname, 'events');

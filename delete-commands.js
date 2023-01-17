@@ -17,15 +17,6 @@ for (const file of commandFiles) {
 // Construct and prepare an instance of the REST module
 const rest = new REST({ version: '10' }).setToken(process.env.DISCORD_TOKEN);
 
-// for guild-based commands
-rest.delete(Routes.applicationGuildCommand(process.env.CLIENT_ID, process.env.GUILD_ID, 'commandId'))
-	.then(() => console.log('Successfully deleted guild command'))
-	.catch(console.error);
-
-// for global commands
-rest.delete(Routes.applicationCommand(process.env.CLIENT_ID, 'commandId'))
-	.then(() => console.log('Successfully deleted application command'))
-	.catch(console.error);
 
 // and deploy your commands!
 (async () => {
@@ -45,3 +36,9 @@ rest.delete(Routes.applicationCommand(process.env.CLIENT_ID, 'commandId'))
 		console.error(error);
 	}
 })();
+
+
+// for global commands
+rest.delete(Routes.applicationCommand(process.env.CLIENT_ID, '1063429456829620306'))
+	.then(() => console.log('Successfully deleted application command'))
+	.catch(console.error);

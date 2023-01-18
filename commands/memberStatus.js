@@ -3,10 +3,10 @@ const wait = require('node:timers/promises').setTimeout;
 
 module.exports = {
 	data: new SlashCommandBuilder()
-		.setName('about-member')
+		.setName('about')
 		.setDescription('Returns info about members')
 		.addStringOption(stringOption =>
-			stringOption.setName('guild-member-info')
+			stringOption.setName('status')
 				.setDescription('get number of member with specific status')
 				.addChoices(
 					{ name: 'online status', value: 'online' },

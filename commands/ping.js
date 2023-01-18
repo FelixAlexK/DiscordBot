@@ -10,7 +10,7 @@ module.exports = {
 
 		await interaction.deferReply();
 		await wait(4000);
-		await interaction.editReply('defer Pong!');
+		await interaction.editReply('delayed Pong!');
 
 	},
 };

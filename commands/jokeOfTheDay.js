@@ -15,7 +15,10 @@ module.exports = {
 			const exampleEmbed = {
 				color: helper.getRandomColor(),
 				title: data.contents.jokes[0].joke.title,
-				fields: [{ name: '', value: data.contents.jokes[0].joke.text }],
+				fields: [
+					{ name: '', value: `${data.contents.jokes[0].joke.text}` },
+
+				],
 				timestamp: new Date().toISOString(),
 			};
 			interaction.reply({ embeds: [exampleEmbed] });

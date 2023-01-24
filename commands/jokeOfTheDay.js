@@ -5,7 +5,7 @@ const logger = require('../logger.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('joke')
-		.setDescription('returns the joke of the day'),
+		.setDescription('provides the joke of the day'),
 	async execute(interaction) {
 
 		try {
@@ -14,7 +14,7 @@ module.exports = {
 
 			const exampleEmbed = {
 				color: helper.getRandomColor(),
-				title: data.contents.jokes[0].joke.title,
+				title: 'Joke Of The Day',
 				fields: [
 					{ name: '', value: `${data.contents.jokes[0].joke.text}` },
 

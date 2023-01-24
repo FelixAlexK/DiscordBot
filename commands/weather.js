@@ -24,7 +24,7 @@ module.exports = {
 				fields: [
 					{ name: 'Temperature', value: `${data.current.temp_c}°C`, inline: true },
 					{ name : 'Condition', value: data.current.condition.text, inline: true },
-					{ name : 'Last Updated', value: data.current.last_updated },
+					{ name : 'Last Updated', value: data.current.last_updated, inline: true },
 
 				],
 				timestamp: new Date().toISOString(),

@@ -4,7 +4,7 @@ const logger = require('../logger.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('chucknorris')
-		.setDescription('returns a random Chuck Norris joke'),
+		.setDescription('provides a random Chuck Norris joke'),
 	async execute(interaction) {
 
 
@@ -17,7 +17,7 @@ module.exports = {
 				title: 'Chuck Norris Joke',
 				url: data.url,
 				thumbnail: {
-					url: data.icon_url,
+					url:' https://api.chucknorris.io/img/chucknorris_logo_coloured_small@2x.png',
 				},
 				fields: [{ name: '', value: `${data.value}` }],
 				timestamp: new Date().toISOString(),

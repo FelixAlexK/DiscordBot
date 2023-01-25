@@ -1,7 +1,6 @@
 const { SlashCommandBuilder } = require('discord.js');
 const helper = require('../helper.js');
 const logger = require('../logger.js');
-const { execute } = require('./chuckNorrisJokes.js');
 const dotenv = require('dotenv').config();
 
 module.exports = {
@@ -11,7 +10,7 @@ module.exports = {
 	async execute(interaction) {
 		const response = await fetch(`http://api.giphy.com/v1/gifs/trending?api_key=${process.env.GIPHY_API_KEY}&limit=1`);
 		const data = await response.json();
-
+		const trendingDateTime = new Date(data.data[0].trending_datetime).toLocaleDateString();
 		try {
 			const exampleEmbed = {
 				color: helper.getRandomColor(),
@@ -23,7 +22,7 @@ module.exports = {
 				fields: [
 					{ name: 'rating:', value: data.data[0].rating, inline: true },
 					{ name : 'type:', value: data.data[0].type, inline: true },
-					{ name : 'trending since:', value:new Date(data.data[0].trending_datetime).toLocaleDateString(), inline: true },
+					{ name : 'trending since:', value: trendingDateTime, inline: true },
 
 				],
 				image: {

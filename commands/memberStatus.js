@@ -20,7 +20,7 @@ module.exports = {
 				.setDescription('should it only visible for you?')),
 	async execute(interaction) {
 		const isEphemeral = interaction.options.getBoolean('ephemeral');
-		const info = interaction.options.getString('guild-member-info');
+		const info = interaction.options.getString('status');
 
 		// First use guild.members.fetch to make sure all members are cached
 		await interaction.guild.members.fetch({ withPresences: true }).then(fetchedMembers => {

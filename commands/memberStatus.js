@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-
+let totalOnline = 0;
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -19,15 +19,24 @@ module.exports = {
 			booleanOption.setName('ephemeral')
 				.setDescription('should it only visible for you?')),
 	async execute(interaction) {
-		const isEphemeral = interaction.options.getBoolean('ephemeral');
+		const isEphemeral = interaction.options.getBoolean('ephemeral') ?? true;
 		const info = interaction.options.getString('status');
 
+		if (info === 'offline') {
+			totalOnline = await interaction.guild.members.cache.filter(member => !['online', 'idle', 'dnd'].includes(member.presence?.status)).size;
+		}
+		else {
+
+			await interaction.guild.members.fetch({ withPresences: true }).then(fetchedMembers => {
+				totalOnline = fetchedMembers.filter(member => member.presence?.status === info).size;
+				// Now you have a collection with all online member objects in the totalOnline variable
+				interaction.reply({ content: `There are currently **${totalOnline}** members ${info} in this guild!`, ephemeral: isEphemeral });
+			});
+		}
 		// First use guild.members.fetch to make sure all members are cached
-		await interaction.guild.members.fetch({ withPresences: true }).then(fetchedMembers => {
-			const totalOnline = fetchedMembers.filter(member => member.presence?.status === info);
-			// Now you have a collection with all online member objects in the totalOnline variable
-			interaction.reply({ content: `There are currently **${totalOnline.size}** members ${info} in this guild!`, ephemeral: isEphemeral });
-		});
+		// Now you have a collection with all online member objects in the totalOnline variable
+		interaction.reply({ content: `There are currently **${totalOnline}** members ${info} in this guild!`, ephemeral: isEphemeral });
+
 
 	},
 };

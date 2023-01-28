@@ -1,3 +1,5 @@
+const _ = require('lodash');
+const game = require('./steamGames.json');
 module.exports = {
 	getRandomColor() {
 		const letters = '0123456789ABCDEF';
@@ -11,3 +13,11 @@ module.exports = {
 		return color;
 	},
 };
+
+module.exports = {
+	getRandomSteamGame() {
+		const randomIndex = _.sample(game);
+		return randomIndex.Game;
+	},
+};
+

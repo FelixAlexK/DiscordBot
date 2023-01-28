@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const helper = require('../helper.js');
+const { getRandomColor } = require('../helper.js');
 const logger = require('../logger.js');
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -16,7 +16,7 @@ module.exports = {
 			const data = await response.json();
 
 			const exampleEmbed = {
-				color: helper.getRandomColor(),
+				color: getRandomColor,
 				title: 'Chuck Norris Joke',
 				url: data.url,
 				thumbnail: {

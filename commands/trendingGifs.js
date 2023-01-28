@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const helper = require('../helper.js');
+const { getRandomColor } = require('../helper.js');
 const logger = require('../logger.js');
 const dotenv = require('dotenv').config();
 
@@ -18,7 +18,7 @@ module.exports = {
 		const isEphemeral = interaction.options.getBoolean('ephemeral') ?? true;
 		try {
 			const exampleEmbed = {
-				color: helper.getRandomColor(),
+				color: getRandomColor,
 				title: data.data[0].title,
 				author: { name: data.data[0].user.display_name,
 					icon_url: data.data[0].user.avatar_url,

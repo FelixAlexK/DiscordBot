@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const helper = require('../helper.js');
+const { getRandomColor } = require('../helper.js');
 const logger = require('../logger.js');
 const dotenv = require('dotenv').config();
 
@@ -21,7 +21,7 @@ module.exports = {
 			const data = await response.json();
 
 			const exampleEmbed = {
-				color: helper.getRandomColor(),
+				color: getRandomColor,
 				title: 'Weather',
 				description: `${data.location.name}, ${data.location.region}, ${data.location.country}`,
 				thumbnail: { url:  `https:${data.current.condition.icon}` },

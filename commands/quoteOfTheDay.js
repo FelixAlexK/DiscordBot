@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const helper = require('../helper.js');
+const { getRandomColor } = require('../helper.js');
 const logger = require('../logger.js');
 
 module.exports = {
@@ -16,7 +16,7 @@ module.exports = {
 			const data = await response.json();
 
 			const exampleEmbed = {
-				color: helper.getRandomColor(),
+				color: getRandomColor,
 				title: data.contents.quotes[0].title,
 				url: data.contents.quotes[0].permalink,
 				author: { name: data.contents.quotes[0].author },

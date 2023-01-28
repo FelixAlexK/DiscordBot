@@ -5,9 +5,12 @@ const logger = require('../logger.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('quote')
-		.setDescription('returns the quote of the day'),
+		.setDescription('returns the quote of the day')
+		.addBooleanOption(booleanOption =>
+			booleanOption.setName('ephemeral')
+				.setDescription('should it only visible for you?')),
 	async execute(interaction) {
-
+		const isEphemeral = interaction.options.getBoolean('ephemeral') ?? true;
 		try {
 			const response = await fetch('https://quotes.rest/qod');
 			const data = await response.json();
@@ -21,7 +24,7 @@ module.exports = {
 				image: { url: data.contents.quotes[0].background },
 				timestamp: new Date().toISOString(),
 			};
-			interaction.reply({ embeds: [exampleEmbed] });
+			interaction.reply({ embeds: [exampleEmbed], ephemeral: isEphemeral });
 
 		}
 		catch (error) {

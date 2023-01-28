@@ -30,7 +30,7 @@ module.exports = {
 			await interaction.guild.members.fetch({ withPresences: true }).then(fetchedMembers => {
 				totalOnline = fetchedMembers.filter(member => member.presence?.status === info).size;
 				// Now you have a collection with all online member objects in the totalOnline variable
-				interaction.reply({ content: `There are currently **${totalOnline}** members ${info} in this guild!`, ephemeral: isEphemeral });
+
 			});
 		}
 		// First use guild.members.fetch to make sure all members are cached

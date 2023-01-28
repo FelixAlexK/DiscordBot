@@ -4,10 +4,13 @@ const logger = require('../logger.js');
 module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('chucknorris')
-		.setDescription('provides a random Chuck Norris joke'),
+		.setDescription('provides a random Chuck Norris joke')
+		.addBooleanOption(booleanOption =>
+			booleanOption.setName('ephemeral')
+				.setDescription('should it only visible for you?')),
 	async execute(interaction) {
 
-
+		const isEphemeral = interaction.options.getBoolean('ephemeral') ?? true;
 		try {
 			const response = await fetch('https://api.chucknorris.io/jokes/random');
 			const data = await response.json();
@@ -22,7 +25,7 @@ module.exports = {
 				fields: [{ name: '', value: `${data.value}` }],
 				timestamp: new Date().toISOString(),
 			};
-			interaction.reply({ embeds: [exampleEmbed] });
+			interaction.reply({ embeds: [exampleEmbed], ephemeral: isEphemeral });
 
 		}
 		catch (error) {

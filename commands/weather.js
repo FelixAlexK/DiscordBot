@@ -9,9 +9,13 @@ module.exports = {
 		.setDescription('provides the weather of a specific location')
 		.addStringOption(stringOption =>
 			stringOption.setName('location')
-				.setDescription('Enter the location from which you want to retrieve the weather')),
+				.setDescription('Enter the location from which you want to retrieve the weather'))
+		.addBooleanOption(booleanOption =>
+			booleanOption.setName('ephemeral')
+				.setDescription('should it only visible for you?')),
 	async execute(interaction) {
 		const location = interaction.options.getString('location', true);
+		const isEphemeral = interaction.options.getBoolean('ephemeral') ?? true;
 		try {
 			const response = await fetch(`http://api.weatherapi.com/v1/current.json?key=${process.env.WEATHER_API_KEY}&q=${location}&aqi=no`);
 			const data = await response.json();
@@ -30,7 +34,7 @@ module.exports = {
 				timestamp: new Date().toISOString(),
 
 			};
-			interaction.reply({ embeds: [exampleEmbed] });
+			interaction.reply({ embeds: [exampleEmbed], ephemeral: isEphemeral });
 
 		}
 		catch (error) {

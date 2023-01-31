@@ -1,5 +1,5 @@
 const { format, createLogger, transports } = require('winston');
-const { combine, timestamp, label, prettyPrint, host } = format;
+const { combine, timestamp, label, prettyPrint } = format;
 const CATEGORY = 'winston custom format';
 
 const logger = createLogger({
